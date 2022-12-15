@@ -9,7 +9,7 @@ namespace AdventOfCode.Test;
 public class Day0
 {
     private readonly ITestOutputHelper _output;
-    private const int Day = 7;
+    private const int Day = 0;
 
     public Day0(ITestOutputHelper output)
     {
