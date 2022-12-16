@@ -51,7 +51,7 @@ public class Monkey
         return input.Split(" ").SelectMany(x => x.Split(",")).Where(x => long.TryParse(x, out _)).Select(long.Parse);
     }
 
-    private static (Func<long, long> test,long divisibleBy) ParseTest(IReadOnlyList<string> input)
+    private static (Func<long, long> test, long divisibleBy) ParseTest(IReadOnlyList<string> input)
     {
         var divisibleBy = long.Parse(input[0].Split(" ").Last());
         var ifTrue = long.Parse(input[1].Split(" ").Last());
@@ -112,10 +112,7 @@ public class Day11
                 {
                     var newWorryLevel = monkey.InspectItem.Invoke(item);
                     monkey.TimesInspected++;
-                    if (newWorryLevel != factor && factor != 0)
-                    {
-                        newWorryLevel = newWorryLevel % factor;
-                    }
+                    newWorryLevel %= factor;
 
                     var throwToMonkey = monkey.ThrowItemTo.Invoke(newWorryLevel);
                     monkeys.Single(x => x.Id == throwToMonkey).Items.Add(newWorryLevel);
